@@ -4,7 +4,7 @@
 
 ### Note
  - Create an issue before getting started on a task
- - Work only on the [development branch](https://github.com/zuri-training/e-care-be-pjt-6/tree/develop) for now
+ - Work only on the [development branch](https://github.com/davideke1/Escrow-Logistic-Platform-be-pjt-90/tree/develop) for now
 
 
 
@@ -25,11 +25,11 @@
 
 
 ## Requirement
-See [requirements file](https://github.com/zuri-training/e-care-be-pjt-6/blob/develop/requirements.txt).
+See [requirements file](https://github.com/davideke1/Escrow-Logistic-Platform-be-pjt-90/blob/master/requirements.txt).
 
 # Contribution Guide
 
-1. Go to [github link](https://github.com/zuri-training/e-care-be-pjt-6/) and fork the repo.
+1. Go to [github link](https://github.com/davideke1/Escrow-Logistic-Platform-be-pjt-90.git) and fork the repo.
 2. After forking, go to your github page and Clone your forked repo. 
 3. Create a project folder on your local machine. 
 4. Navigate to it in the terminal. Run `git clone https://github.com/your-account-name/e-care-be-pjt-6/`.
