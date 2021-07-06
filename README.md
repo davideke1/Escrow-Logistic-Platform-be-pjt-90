@@ -1,6 +1,6 @@
-# Team PJT-06 E-Care Webapp
+# Team PJT-90 Escrow Logistics Platform
 
-**This API handles all the backend details for E-Care PJT-06.**
+**This API handles all the backend details for Escrow PJT-90.**
 
 ### Note
  - Create an issue before getting started on a task
