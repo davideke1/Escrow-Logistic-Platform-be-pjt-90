@@ -8,7 +8,7 @@ from django.utils.translation import ugettext_lazy as _
 from rest_framework_simplejwt.tokens import RefreshToken
 
 from src import settings
-from escrowapi.user_manager import UserManager
+from api.user_manager import UserManager
 
 AUTH_PROVIDERS = {
     'email': 'email'

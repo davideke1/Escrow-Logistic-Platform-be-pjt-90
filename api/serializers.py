@@ -7,7 +7,7 @@ from rest_framework.exceptions import AuthenticationFailed
 from django.contrib import auth
 ##from rest_framework_simplejwt.tokens import RefreshToken, TokenError
 
-from escrowapi.models import User, Customer, Vendor
+from api.models import User, Customer, Vendor
 
 
 class UserSerializer(serializers.ModelSerializer):
