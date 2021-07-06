@@ -5,13 +5,13 @@ This will guide you from cloning this repository to pushing your contributions.
 ## Cloning
 To clone project repo to your local machine, open command prompt and run:
 ```
-git clone https://github.com/
+https://github.com/davideke1/Escrow-Logistic-Platform-be-pjt-90/tree/develop
 ```
 
 ## Change to project directory
 Change to the project directory you just cloned
 ```
-cd 
+cd Escrow-Logistic-Platform-be-pjt-90
 ```
 
 ## Checkout Develop Branch
