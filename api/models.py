@@ -87,3 +87,18 @@ class Vendor(models.Model):
 
     def __str__(self):
         return str(self.business_name)
+
+
+class sellerInfo(models.Model):
+    name = models.CharField(max_length=100)
+
+
+class Product(models.Model):
+    product = models.CharField(max_length=100)
+    #author = models.ForeignKey(User, on_delete=models.CASCADE)
+    price = models.DecimalField(max_digits=9, decimal_places=2)
+    quantity = models.IntegerField()
+    brief_description = models.TextField()
+
+    def __str__(self):
+        return self.product

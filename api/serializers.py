@@ -2,12 +2,13 @@
 #from django.contrib.auth.tokens import PasswordResetTokenGenerator
 #from django.utils.encoding import force_str
 #from django.utils.http import urlsafe_base64_decode
+from django.db import models
 from rest_framework import serializers
 from rest_framework.exceptions import AuthenticationFailed
 from django.contrib import auth
 ##from rest_framework_simplejwt.tokens import RefreshToken, TokenError
 
-from api.models import User, Customer, Vendor
+from api.models import Product, User, Customer, Vendor, sellerInfo
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -89,3 +90,13 @@ class LoginSerializer(serializers.ModelSerializer):
         }
 
         return super().validate(attrs)
+
+class SellerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = sellerInfo
+        fields = '__all__'
+        
+class ProductSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Product
+        fields = ('brief_description', 'price', 'quantity')
