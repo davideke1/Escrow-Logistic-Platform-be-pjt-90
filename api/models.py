@@ -89,16 +89,26 @@ class Vendor(models.Model):
         return str(self.business_name)
 
 
+CHOICES = (
+    ('INSTAGRAM', 'Instagram'),
+    ('TWITTER', 'Twitter')
+)
 class sellerInfo(models.Model):
-    name = models.CharField(max_length=100)
+    name_of_seller = models.CharField(max_length=100)
+    social_media_handle = models.CharField(max_length=100)
+    social_type = models.CharField(choices=CHOICES, default='INSTAGRAM' ,max_length=10)
+    email = models.EmailField(max_length=100)
+    phone_number = models.CharField(max_length=100)
+
+    def __str__(self) -> str:
+        return self.name_of_seller
 
 
 class Product(models.Model):
-    product = models.CharField(max_length=100)
-    #author = models.ForeignKey(User, on_delete=models.CASCADE)
+    product_name = models.CharField(max_length=100)
     price = models.DecimalField(max_digits=9, decimal_places=2)
     quantity = models.IntegerField()
     brief_description = models.TextField()
 
     def __str__(self):
-        return self.product
+        return self.product_name

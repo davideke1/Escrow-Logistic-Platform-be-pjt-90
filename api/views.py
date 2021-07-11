@@ -1,5 +1,4 @@
-from api.models import Product
-from api.serializers import CustomerSerializer, LoginSerializer, ProductSerializers, SellerSerializer, VendorSerializer
+from api.serializers import CustomerSerializer, LoginSerializer, LogoutSerializer, ProductSerializer,  SellerSerializer, VendorSerializer
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework import status, generics, permissions, views
@@ -28,6 +27,7 @@ class VendorCreateAPIView(APIView):
     def post(self, request, format=None):
         serializer = self.serializer_class(data=request.data)
 
+
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -45,6 +45,7 @@ class LoginAPIView(generics.GenericAPIView):
 
 class SellerInfoAPIView(APIView):
     serializer_class = SellerSerializer
+    permission_classes = (permissions.IsAuthenticated,)
 
     def post(self, request, format=None):
         serializer = self.serializer_class(data=request.data)
@@ -54,13 +55,24 @@ class SellerInfoAPIView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-def product(request):
-    if request.method == 'GET':
-        product = Product.objects.all()
-        serializer = ProductSerializers(product, many=True)
-        return JsonResponse(serializer.data, safe=False)
+class ProductInfoAPIView(APIView):
+    serializer_class = ProductSerializer
+    permission_classes = [permissions.IsAuthenticated]
+    def post(self, request, format=None):
+        serializer = self.serializer_class(data=request.data)
 
-    elif request.method == 'POST':
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+#def product(request):
+ #   if request.method == 'GET':
+  #      product = Product.objects.all()
+   #     serializer = ProductSerializers(product, many=True)
+    #    return JsonResponse(serializer.data, safe=False)
+
+    #elif request.method == 'POST':
         data = JSONParser().parse(request)
         serializer = ProductSerializers(data=data)
 
@@ -69,3 +81,16 @@ def product(request):
             return Response(serializer.data, status=201)
 
         return JsonResponse(serializer.data, status=500)
+
+
+class LogoutAPIView(generics.GenericAPIView):
+    serializer_class = LogoutSerializer
+
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def post(self, request):
+        serializer = self.serializer_class(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+
+        return Response(status=status.HTTP_204_NO_CONTENT)

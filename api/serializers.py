@@ -6,7 +6,7 @@ from django.db import models
 from rest_framework import serializers
 from rest_framework.exceptions import AuthenticationFailed
 from django.contrib import auth
-##from rest_framework_simplejwt.tokens import RefreshToken, TokenError
+from rest_framework_simplejwt.tokens import RefreshToken, TokenError
 
 from api.models import Product, User, Customer, Vendor, sellerInfo
 
@@ -91,12 +91,32 @@ class LoginSerializer(serializers.ModelSerializer):
 
         return super().validate(attrs)
 
+class LogoutSerializer(serializers.Serializer):
+    refresh = serializers.CharField()
+
+    default_error_message = {
+        'bad_token': ('Token is expired or invalid')
+    }
+
+    def validate(self, attrs):
+        self.token = attrs['refresh']
+        return attrs
+
+    def save(self, **kwargs):
+
+        try:
+            RefreshToken(self.token).blacklist()
+
+        except TokenError:
+            self.fail('bad_token')
+
+
 class SellerSerializer(serializers.ModelSerializer):
     class Meta:
         model = sellerInfo
         fields = '__all__'
         
-class ProductSerializers(serializers.ModelSerializer):
+class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
-        fields = ('brief_description', 'price', 'quantity')
+        fields = ('product_name','brief_description', 'price', 'quantity')
